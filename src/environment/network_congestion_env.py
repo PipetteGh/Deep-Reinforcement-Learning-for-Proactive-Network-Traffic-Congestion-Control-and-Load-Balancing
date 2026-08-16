@@ -65,20 +65,12 @@ class NetworkCongestionEnv(gym.Env):
         self.edge_mapping = {e: i for i, e in enumerate(self.graph.edges()) if i < MAX_LINKS}
         
     def _generate_traffic(self):
-        # Placeholder for Phase 6 integration
-        # For now, generate random active flows
+        # Use the Phase 6 Traffic Generator
+        from src.traffic.traffic_generator import TrafficGenerator
         nodes = list(self.graph.nodes())
-        self.active_flows = []
-        self.flow_routes = {}
-        
-        num_flows = min(MAX_FLOWS, len(nodes) * 2)
-        for _ in range(num_flows):
-            src, dst = random.sample(nodes, 2)
-            pair = f"{src}_{dst}"
-            if pair in self.paths and len(self.paths[pair]) > 0:
-                demand = random.uniform(0.1, 0.5) # Simulated demand
-                self.active_flows.append({"src": src, "dst": dst, "demand": demand, "pair": pair})
-                self.flow_routes[pair] = 0 # Default to shortest path (index 0)
+        tg = TrafficGenerator(nodes, self.paths, max_flows=MAX_FLOWS)
+        self.active_flows = tg.generate(mode=getattr(self, 'traffic_mode', 'normal'))
+        self.flow_routes = {f["pair"]: 0 for f in self.active_flows}
                 
     def _calculate_state(self):
         link_utils = np.zeros(MAX_LINKS, dtype=np.float32)
@@ -149,24 +141,41 @@ class NetworkCongestionEnv(gym.Env):
         # Calculate new state
         next_state = self._calculate_state()
         
-        # Calculate Reward (Phase 10 stub)
-        # Reward = 1.0 - mean(link_utilization) - penalty for high queues
+        # Load Reward Config (Phase 10)
+        import yaml
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+        try:
+            with open(os.path.join(base_dir, 'configs', 'reward.yaml'), 'r') as f:
+                rew_cfg = yaml.safe_load(f)
+        except:
+            rew_cfg = {'w_throughput': 0.4, 'w_latency': 0.3, 'w_packet_loss': 0.2, 'w_congestion': 0.1}
+            
         link_utils = next_state[:MAX_LINKS]
         queue_occs = next_state[MAX_LINKS:2*MAX_LINKS]
         
-        mean_util = np.mean(link_utils[link_utils > 0]) if np.any(link_utils > 0) else 0
-        congestion_penalty = np.sum(queue_occs) * 0.1
+        # Calculate components
+        mean_util = np.mean(link_utils[link_utils > 0]) if np.any(link_utils > 0) else 0.0
+        normalized_throughput = 1.0 - mean_util # Simplified proxy for successful delivery
         
-        reward = 1.0 - mean_util - congestion_penalty
+        normalized_latency = np.mean(queue_occs[queue_occs > 0]) if np.any(queue_occs > 0) else 0.0
+        packet_loss = np.sum(queue_occs == 1.0) / MAX_LINKS # Proxy: saturated queues drop packets
+        congestion_penalty = np.sum(queue_occs) / MAX_LINKS
+        
+        # Weighted formulation
+        reward = (rew_cfg['w_throughput'] * normalized_throughput) - \
+                 (rew_cfg['w_latency'] * normalized_latency) - \
+                 (rew_cfg['w_packet_loss'] * packet_loss) - \
+                 (rew_cfg['w_congestion'] * congestion_penalty)
         
         terminated = self.current_step >= self.max_steps
         truncated = False
         info = {
             "mean_utilization": mean_util,
-            "congestion_penalty": congestion_penalty
+            "congestion_penalty": congestion_penalty,
+            "packet_loss": packet_loss
         }
         
-        return next_state, reward, terminated, truncated, info
+        return next_state, float(reward), terminated, truncated, info
 
     def render(self, mode='console'):
         if mode == 'console':

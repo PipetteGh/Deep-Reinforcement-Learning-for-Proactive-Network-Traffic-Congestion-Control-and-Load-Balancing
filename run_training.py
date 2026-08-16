@@ -4,7 +4,7 @@ from src.agents.train_dqn import train_dqn
 from src.agents.train_ppo import train_ppo
 
 def main():
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    base_dir = os.path.abspath(os.path.dirname(__file__))
     config_path = os.path.join(base_dir, 'configs', 'topologies.yaml')
     
     with open(config_path, 'r') as f:

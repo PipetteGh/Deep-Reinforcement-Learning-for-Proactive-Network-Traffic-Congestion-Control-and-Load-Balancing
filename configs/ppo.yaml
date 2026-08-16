@@ -10,4 +10,4 @@ ent_coef: 0.01 # entropy coefficient
 vf_coef: 0.5 # value-function coefficient
 max_grad_norm: 0.5
 policy: "MlpPolicy"
-timesteps: 50000
+timesteps: 5000

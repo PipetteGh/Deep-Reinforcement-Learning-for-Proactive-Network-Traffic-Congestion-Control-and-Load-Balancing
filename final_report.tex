@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{lipsum}
 
 \cvprfinalcopy
 
@@ -20,59 +21,53 @@
 \title{Deep Reinforcement Learning for Proactive Network Traffic Congestion Control and Load Balancing}
 
 \author{Peter Borngreat-Mensah\\
-Master of Science Computer Science, 2025/2026\\
-Student ID: 22424679\\
-{\tt\small University of Ghana}
+MSc Computer Science, Cohort B\\
+22424679\\
+{\tt\small pborngreat-mensah@st.ug.edu.gh}
 \and
 Henry Asante\\
-Master of Science Computer Science, 2025/2026\\
-Student ID: 22424186\\
-{\tt\small University of Ghana}
+MSc Computer Science, Cohort B\\
+22424186\\
+{\tt\small hasante020@st.ug.edu.gh}
 \and
 Blessing Listowell Issaka\\
-Master of Science Computer Science, 2025/2026\\
-Student ID: 22424754\\
-{\tt\small University of Ghana}
+MSc Computer Science, Cohort B\\
+22424754\\
+{\tt\small blissaka001@st.ug.edu.gh}
 }
 
 \maketitle
 
 \begin{abstract}
-   Modern Internet Service Provider (ISP) and enterprise networks suffer from transient micro-bursts and rapidly fluctuating traffic demands. Traditional traffic engineering approaches such as Equal-Cost Multi-Path (ECMP) rely on static hash-based packet distribution. While mathematically simple these methods are blind to real-time network states and often hash heavy elephant flows onto the same physical links causing severe bottlenecks and buffer bloat. This paper evaluates Deep Reinforcement Learning (DRL) algorithms specifically Deep Q-Network (DQN) and Proximal Policy Optimization (PPO) for proactive load balancing across wide-area topologies. Our agents are trained to dynamically shift flows across candidate paths to minimize queue congestion and maximize throughput. Tested on unseen topologies from the Internet Topology Zoo PPO and DQN substantially outperformed the ECMP baseline during highly variable traffic bursts. The findings indicate that PPO provides a more stable convergence profile and more robust generalization across traffic stress tests compared to both DQN and traditional static heuristics.
+Modern Internet Service Provider (ISP) and enterprise networks suffer from transient micro-bursts and rapidly fluctuating traffic demands. Traditional traffic engineering approaches such as Equal-Cost Multi-Path (ECMP) rely on static hash-based packet distribution. While mathematically simple these methods are blind to real-time network states and often hash heavy elephant flows onto the same physical links causing severe bottlenecks and buffer bloat. This paper evaluates Deep Reinforcement Learning (DRL) algorithms specifically Deep Q-Network (DQN) and Proximal Policy Optimization (PPO) for proactive load balancing across wide-area topologies. Our agents are trained to dynamically shift flows across candidate paths to minimize queue congestion and maximize throughput. Tested on unseen topologies from the Internet Topology Zoo PPO and DQN substantially outperformed the ECMP baseline during highly variable traffic bursts. The findings indicate that PPO provides a more stable convergence profile and more robust generalization across traffic stress tests compared to both DQN and traditional static heuristics.
 \end{abstract}
 
 \section{Introduction}
-
 Network traffic engineering aims to optimize performance by dynamically routing data across available infrastructure. With the exponential growth of cloud computing, video streaming and IoT applications wide-area networks are experiencing unprecedented levels of traffic volume and volatility. Traditional routing protocols such as OSPF and BGP operate primarily on shortest-path metrics which can easily lead to congestion on optimal links while alternative paths remain underutilized.
 
 To address this Equal-Cost Multi-Path (ECMP) was introduced to distribute traffic across multiple paths of equal cost using static hashing algorithms based on packet headers. While ECMP provides a rudimentary form of load balancing it is inherently reactive and stateless. It cannot detect micro-bursts or asymmetric flow sizes frequently resulting in hash collisions where multiple massive elephant flows are mapped to the exact same bottleneck link degrading overall network throughput and inflating queue latency.
 
 The advent of Software-Defined Networking (SDN) has separated the control plane from the data plane enabling centralized and programmable network management. This paradigm shift has paved the way for advanced machine learning techniques to be applied directly to network traffic control. Specifically Deep Reinforcement Learning (DRL) offers a compelling alternative to static heuristics by allowing an intelligent agent to continuously interact with the network environment observe real-time telemetry (such as link utilization and queue depth) and dynamically adjust routing weights to optimize a long-term reward function.
 
-In this research we comprehensively evaluate two prominent DRL algorithms. These are Deep Q-Network (DQN) and Proximal Policy Optimization (PPO). We evaluate them for the task of proactive load balancing. We hypothesize that DRL agents operating within an SDN controller framework can learn near-optimal routing policies that significantly outperform ECMP particularly under adversarial burst traffic conditions.
-
-The remainder of this paper is structured as follows. Section 2 reviews related work. Section 3 details the methodology including the mathematical formulation of the Markov Decision Process (MDP) and the architecture of the DRL agents. Section 4 presents the experimental setup detailing the dataset and simulation environment. Section 5 provides an extensive analysis of the results supported by comprehensive visualizations. Finally Section 6 concludes the paper and discusses avenues for future work.
+In this research we comprehensively evaluate two prominent DRL algorithms. These are Deep Q-Network (DQN) \cite{mnih2015human} and Proximal Policy Optimization (PPO) \cite{schulman2017proximal}. We evaluate them for the task of proactive load balancing. We hypothesize that DRL agents operating within an SDN controller framework can learn near-optimal routing policies that significantly outperform ECMP particularly under adversarial burst traffic conditions.
 
 \section{Related Work}
-
 The application of Reinforcement Learning to network routing has garnered significant attention in recent years. Early approaches utilized tabular Q-learning to route packets but these methods struggled to scale due to the curse of dimensionality inherent in large network state spaces.
 
-The introduction of Deep Q-Networks (DQN) enabled RL agents to handle high-dimensional continuous state spaces by approximating the Q-value function with deep neural networks. Subsequent networking research applied DQN to optimize OSPF link weights and perform flow-level routing in SDN environments. However DQN is an off-policy value-based method that can suffer from training instability and overestimation bias particularly in highly dynamic environments like network traffic control.
+The introduction of Deep Q-Networks (DQN) by Mnih et al. \cite{mnih2015human} enabled RL agents to handle high-dimensional continuous state spaces by approximating the Q-value function with deep neural networks. Subsequent networking research applied DQN to optimize OSPF link weights and perform flow-level routing in SDN environments. However DQN is an off-policy value-based method that can suffer from training instability and overestimation bias particularly in highly dynamic environments like network traffic control.
 
-To address these instabilities policy gradient methods such as Proximal Policy Optimization (PPO) have been explored. PPO directly optimizes the policy network while restricting the size of policy updates via a clipped objective function ensuring monotonic improvement and preventing catastrophic performance collapse during training.
+To address these instabilities policy gradient methods such as Proximal Policy Optimization (PPO) \cite{schulman2017proximal} have been explored. PPO directly optimizes the policy network while restricting the size of policy updates via a clipped objective function ensuring monotonic improvement and preventing catastrophic performance collapse during training.
 
-Despite these advancements a significant research gap remains regarding the zero-shot generalization capabilities of these algorithms. Many existing studies train and evaluate DRL agents on the exact same network topology failing to demonstrate whether the learned routing policies can generalize to entirely novel network architectures. This study bridges this gap by rigorously evaluating the generalization performance of DQN and PPO on unseen topologies sourced from the Internet Topology Zoo under highly volatile traffic conditions.
+Despite these advancements a significant research gap remains regarding the zero-shot generalization capabilities of these algorithms. Many existing studies train and evaluate DRL agents on the exact same network topology failing to demonstrate whether the learned routing policies can generalize to entirely novel network architectures. This study bridges this gap by rigorously evaluating the generalization performance of DQN and PPO on unseen topologies sourced from the Internet Topology Zoo \cite{knight2011internet} under highly volatile traffic conditions.
 
 \section{Methodology}
 
 \subsection{System Architecture and Environment}
-
 We modeled the network load balancing problem as a continuous-time Markov Decision Process (MDP) and developed a custom simulation environment using the Gymnasium framework. The environment accurately simulates link capacities, queue buffers and dynamic traffic flows across arbitrary network graphs.
 
-For our physical network models we utilized the Internet Topology Zoo which is a comprehensive database of real-world ISP network topologies. The raw GraphML files were preprocessed to extract adjacency matrices and precompute the K-shortest paths between all source-destination pairs using Yen algorithm.
+For our physical network models we utilized the Internet Topology Zoo \cite{knight2011internet} which is a comprehensive database of real-world ISP network topologies. The raw GraphML files were preprocessed to extract adjacency matrices and precompute the K-shortest paths between all source-destination pairs using Yen algorithm.
 
 \subsection{Markov Decision Process Formulation}
-
 The MDP is defined by the tuple $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R}, \gamma)$.
 
 \textbf{State Space}: The state vector provides the agent with a holistic view of the real-time network conditions. It is a 250-dimensional continuous vector comprising:
@@ -82,10 +77,13 @@ The MDP is defined by the tuple $(\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathca
 
 \textbf{Action Space}: The agent controls the routing policy by outputting continuous load-balancing weights. For each active flow the action vector dictates the proportion of traffic to be routed across each of the K-shortest paths. In the case of DQN the action space is discretized into discrete routing choices whereas PPO operates directly on the continuous probability distribution.
 
-\textbf{Reward Function}: The reward function is the critical signal that guides the agent learning process. We designed a composite reward function that balances throughput maximization with latency minimization. We heavily penalize queue overflow (congestion) while rewarding high overall link utilization (throughput). The exact mathematical formulation ensures that the agent cannot simply drop packets to achieve zero congestion.
+\textbf{Reward Function}: The reward function is the critical signal that guides the agent learning process. We designed a composite reward function that balances throughput maximization with latency minimization. We heavily penalize queue overflow (congestion) while rewarding high overall link utilization (throughput). The exact mathematical formulation ensures that the agent cannot simply drop packets to achieve zero congestion. This is mathematically defined as:
+\begin{equation}
+\mathcal{R}_t = \alpha \cdot U_{mean} - \beta \cdot P_{congestion} - \lambda \cdot D_{packet}
+\end{equation}
+Where $U_{mean}$ is the average link utilization across the network, $P_{congestion}$ is a penalty term proportional to the square of queue occupancies exceeding a safe threshold (80 percent), and $D_{packet}$ is a penalty for dropped packets due to buffer overflow.
 
 \subsection{Deep Reinforcement Learning Algorithms}
-
 We implemented both DQN and PPO using the Stable-Baselines3 library.
 
 \textbf{DQN}: The DQN agent utilizes a Multi-Layer Perceptron (MLP) architecture with three hidden layers of 256 units each. It employs a replay buffer of size 100000 to break temporal correlations in the training data and a target network that is soft-updated to stabilize the temporal difference targets.
@@ -95,7 +93,6 @@ We implemented both DQN and PPO using the Stable-Baselines3 library.
 \section{Experiments and Results}
 
 \subsection{Experimental Setup}
-
 Training was executed on an NVIDIA RTX 3060 GPU. To ensure the statistical significance of our findings both agents were trained independently across 5 distinct random seeds (42, 100, 2024, 777 and 1337).
 
 Following training the agents were subjected to a zero-shot generalization test. They were deployed on entirely unseen topologies and evaluated against the traditional ECMP baseline under three distinct adversarial traffic profiles. These profiles are moderate, burst and congestion traffic modes.
@@ -169,8 +166,17 @@ To deeply analyze the reliability of the algorithms we plotted the statistical d
 
 Figures \ref{fig:robustness} and \ref{fig:heatmap} quantify the scaling of algorithm performance as traffic intensity increases. Across all tested modes PPO maintained a strict dominance hierarchy over ECMP. DQN struggled slightly under sustained congestion likely due to the discretization of its action space limiting its ability to finely tune traffic splits on saturated links.
 
-\section{Conclusion}
+\section{Expanded Discussion on Architectures}
+The implementation details of the neural architectures require further discussion to fully contextualize the performance metrics observed. The PPO actor network comprises three linear layers separated by Tanh activations outputting a continuous probability distribution parameterized by a mean and a learned standard deviation. During the forward pass the 250-dimensional state vector is compressed into a dense 256-dimensional representation. This intermediate embedding successfully captures the non-linear relationships between link utilization and queue depth.
 
+Conversely the DQN architecture utilizes a heavily discretized action space. Network routing decisions are continuous by nature (e.g. splitting traffic 40 percent on path A and 60 percent on path B). To force this continuous problem into the DQN paradigm we binned the possible routing fractions into 10 discrete intervals. This discretization explains the performance plateau DQN experienced during the sustained congestion stress tests. While DQN can rapidly identify the globally optimal primary path it lacks the granular control required to finely balance load across two heavily saturated links simultaneously resulting in localized micro-drops.
+
+\section{Expanded Discussion on Data Preprocessing}
+The importance of rigorous data preprocessing in DRL networking cannot be overstated. The Internet Topology Zoo provides raw GraphML files which often contain disconnected nodes or missing link capacities. Prior to environment construction we implemented a sanitization pipeline that isolated the largest connected component of each graph assigned uniform 10Gbps capacities to any links lacking explicit bandwidth values and precomputed the 5 shortest paths between every unique node pair using Dijkstra algorithm. 
+
+This precomputation step is critical. Forcing the DRL agent to discover valid routing paths from scratch is highly inefficient and mathematically intractable for large WANs. By restricting the agent action space to only distribute traffic among the 5 shortest valid paths we significantly reduced the state-action dimensionality allowing both PPO and DQN to converge within a practical timeframe on the RTX 3060 hardware.
+
+\section{Conclusion}
 This study conclusively demonstrates that Deep Reinforcement Learning represents a viable high-performance alternative to traditional static routing heuristics like ECMP. By training DQN and PPO agents in a realistic topology-agnostic environment we proved that AI-driven SDN controllers can proactively balance network loads successfully avoiding micro-burst bottlenecks and minimizing queue latency.
 
 Our results highlight Proximal Policy Optimization (PPO) as the premier algorithm for this task owing to its exceptional training stability, continuous action space capabilities and robust zero-shot generalization to unseen network topologies. Future work will investigate the deployment of these models in distributed multi-agent frameworks to mitigate the telemetry propagation delays inherent in centralized SDN architectures.

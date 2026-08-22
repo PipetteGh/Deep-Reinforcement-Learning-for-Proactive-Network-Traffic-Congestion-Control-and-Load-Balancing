@@ -1,50 +1,76 @@
 \relax 
+\citation{kim2023ecmp}
+\citation{chen2022drl}
+\citation{patel2022reward}
 \citation{mnih2015human}
+\citation{nguyen2026deep}
 \citation{schulman2017proximal}
+\citation{li2024ppo}
+\citation{wang2024saturation}
 \citation{mnih2015human}
+\citation{nguyen2026deep}
+\citation{garcia2023discrete}
 \@writefile{toc}{\contentsline {section}{\numberline {1}\hskip -1em.~Introduction}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}\hskip -1em.~Related Work}{1}{}\protected@file@percent }
 \citation{schulman2017proximal}
+\citation{li2024ppo}
+\citation{zhang2025zero}
 \citation{knight2011internet}
+\citation{towers2023gymnasium}
+\citation{raffin2022stable}
+\citation{towers2023gymnasium}
 \citation{knight2011internet}
+\citation{garcia2023discrete}
 \@writefile{toc}{\contentsline {section}{\numberline {3}\hskip -1em.~Methodology}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}\hskip -1em.~System Architecture and Environment}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}\hskip -1em.~Markov Decision Process Formulation}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}\hskip -1em.~Deep Reinforcement Learning Algorithms}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}\hskip -1em.~Experiments and Results}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}\hskip -1em.~Experimental Setup}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}\hskip -1em.~Convergence Analysis}{3}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Deep RL Reward Convergence Over Time.}}{3}{}\protected@file@percent }
-\newlabel{fig:convergence}{{1}{3}{}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}\hskip -1em.~Throughput vs Latency Tradeoff}{3}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Throughput vs Latency Tradeoff.}}{3}{}\protected@file@percent }
-\newlabel{fig:scatter}{{2}{3}{}{figure.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}\hskip -1em.~Performance Under Burst Traffic}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Relative Importance of State Vector Features determined via Principal Component Analysis (PCA).}}{2}{}\protected@file@percent }
+\newlabel{fig:feat_imp}{{1}{2}{}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces MDP Action Space Probability Density: DQN vs PPO.}}{2}{}\protected@file@percent }
+\newlabel{fig:action_space}{{2}{2}{}{figure.2}{}}
+\citation{raffin2022stable}
+\citation{wang2024saturation}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}\hskip -1em.~Deep Reinforcement Learning Algorithms}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}\hskip -1em.~Experiments and Results}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}\hskip -1em.~Performance Under Burst Traffic}{3}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Overall Reward Under Burst Traffic Constraints.}}{3}{}\protected@file@percent }
 \newlabel{fig:burst}{{3}{3}{}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}\hskip -1em.~Statistical Distribution of Performance}{3}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Link Utilization Distribution by Traffic Scenario.}}{3}{}\protected@file@percent }
-\newlabel{fig:boxplot}{{4}{3}{}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Congestion Penalty Variance per Agent.}}{4}{}\protected@file@percent }
-\newlabel{fig:violin}{{5}{4}{}{figure.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}\hskip -1em.~Robustness and Scaling}{4}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Algorithm Robustness Across Traffic Stress Tests.}}{4}{}\protected@file@percent }
-\newlabel{fig:robustness}{{6}{4}{}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Reward Matrix.}}{4}{}\protected@file@percent }
-\newlabel{fig:heatmap}{{7}{4}{}{figure.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}\hskip -1em.~Expanded Discussion on Architectures}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}\hskip -1em.~Expanded Discussion on Data Preprocessing}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}\hskip -1em.~The Saturation Limit (Honest Negative Result)}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Throughput vs Latency Tradeoff under various scenarios.}}{3}{}\protected@file@percent }
+\newlabel{fig:scatter}{{4}{3}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}\hskip -1em.~Statistical Distribution of Performance}{3}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Link Utilization Distribution by Traffic Scenario.}}{3}{}\protected@file@percent }
+\newlabel{fig:boxplot}{{5}{3}{}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Congestion Penalty Variance per Agent.}}{4}{}\protected@file@percent }
+\newlabel{fig:violin}{{6}{4}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}\hskip -1em.~Robustness and Scaling}{4}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Algorithm Robustness Across Traffic Stress Tests.}}{4}{}\protected@file@percent }
+\newlabel{fig:robustness}{{7}{4}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Reward Matrix.}}{4}{}\protected@file@percent }
+\newlabel{fig:heatmap}{{8}{4}{}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Zero-Shot Generalization vs Network Topology Size.}}{4}{}\protected@file@percent }
+\newlabel{fig:toposcaling}{{9}{4}{}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}\hskip -1em.~Discussion}{4}{}\protected@file@percent }
 \bibstyle{ieee}
 \bibdata{references}
-\bibcite{knight2011internet}{1}
-\bibcite{mnih2015human}{2}
-\@writefile{toc}{\contentsline {section}{\numberline {7}\hskip -1em.~Extended Training Dynamics}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}\hskip -1em.~Policy Optimization and Loss Curves}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Agent Loss Optimization during Extended Training.}}{5}{}\protected@file@percent }
-\newlabel{fig:loss}{{8}{5}{}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}\hskip -1em.~Episode Length Distribution}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Episode Length Distribution before Packet Drop Threshold.}}{5}{}\protected@file@percent }
-\newlabel{fig:eplength}{{9}{5}{}{figure.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}\hskip -1em.~Conclusion}{5}{}\protected@file@percent }
-\bibcite{schulman2017proximal}{3}
+\bibcite{chen2022drl}{1}
+\bibcite{garcia2023discrete}{2}
+\bibcite{kim2023ecmp}{3}
+\bibcite{knight2011internet}{4}
+\bibcite{li2024ppo}{5}
+\bibcite{mnih2015human}{6}
+\bibcite{nguyen2026deep}{7}
+\bibcite{patel2022reward}{8}
+\bibcite{raffin2022stable}{9}
+\bibcite{schulman2017proximal}{10}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Agent Loss Optimization. (Note: PPO Policy loss and DQN Q-loss measure different mathematical constructs and are shown together strictly to demonstrate internal convergence stability, not as a direct comparative metric).}}{5}{}\protected@file@percent }
+\newlabel{fig:loss}{{10}{5}{}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Episode Length Distribution before Packet Drop Threshold.}}{5}{}\protected@file@percent }
+\newlabel{fig:eplength}{{11}{5}{}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces PPO Policy Entropy Decay over 50,000 Training Timesteps.}}{5}{}\protected@file@percent }
+\newlabel{fig:entropy}{{12}{5}{}{figure.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}\hskip -1em.~Conclusion}{5}{}\protected@file@percent }
+\bibcite{towers2023gymnasium}{11}
+\bibcite{wang2024saturation}{12}
+\bibcite{zhang2025zero}{13}
 \gdef \@abspage@last{6}

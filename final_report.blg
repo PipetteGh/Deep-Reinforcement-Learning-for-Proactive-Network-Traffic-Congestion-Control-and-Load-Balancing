@@ -5,46 +5,44 @@ Reallocating 'name_of_file' (item size: 1) to 5 items.
 The style file: ieee.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-Warning--can't use both volume and number fields in knight2011internet
-You've used 3 entries,
+You've used 13 entries,
             2120 wiz_defined-function locations,
-            521 strings with 4453 characters,
-and the built_in function-call counts, 1577 in all, are:
-= -- 146
-> -- 114
+            584 strings with 6326 characters,
+and the built_in function-call counts, 5392 in all, are:
+= -- 520
+> -- 334
 < -- 2
-+ -- 46
-- -- 42
-* -- 136
-:= -- 267
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 29
++ -- 134
+- -- 118
+* -- 440
+:= -- 919
+add.period$ -- 41
+call.type$ -- 13
+change.case$ -- 96
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 46
-empty$ -- 89
-format.name$ -- 42
-if$ -- 315
+cite$ -- 13
+duplicate$ -- 163
+empty$ -- 356
+format.name$ -- 118
+if$ -- 1083
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 3
-newline$ -- 18
-num.names$ -- 6
-pop$ -- 28
+int.to.str$ -- 13
+missing$ -- 13
+newline$ -- 68
+num.names$ -- 26
+pop$ -- 84
 preamble$ -- 1
-purify$ -- 26
+purify$ -- 83
 quote$ -- 0
-skip$ -- 37
+skip$ -- 114
 stack$ -- 0
-substring$ -- 81
-swap$ -- 17
+substring$ -- 347
+swap$ -- 31
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
-warning$ -- 1
-while$ -- 11
-width$ -- 4
-write$ -- 36
-(There was 1 warning)
+type$ -- 52
+warning$ -- 0
+while$ -- 48
+width$ -- 15
+write$ -- 145

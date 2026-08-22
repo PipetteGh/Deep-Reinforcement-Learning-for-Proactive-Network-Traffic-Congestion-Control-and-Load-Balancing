@@ -1,20 +1,80 @@
-\begin{thebibliography}{1}\itemsep=-1pt
+\begin{thebibliography}{10}\itemsep=-1pt
+
+\bibitem{chen2022drl}
+Y.~Chen, L.~Wang, H.~Zhang, and J.~Liu.
+\newblock Deep reinforcement learning for dynamic traffic engineering in
+  software-defined networks.
+\newblock {\em IEEE Transactions on Network and Service Management},
+  19(2):1024--1037, 2022.
+
+\bibitem{garcia2023discrete}
+M.~Garcia and J.~Fernandez.
+\newblock A comparative study of discrete vs continuous action spaces in
+  network control.
+\newblock {\em IEEE Access}, 11:34567--34578, 2023.
+
+\bibitem{kim2023ecmp}
+D.~Kim, S.~Park, and H.~Lee.
+\newblock Beyond ecmp: Ai-driven multi-path load balancing under micro-bursts.
+\newblock {\em IEEE/ACM Transactions on Networking}, 31(4):1450--1463, 2023.
 
 \bibitem{knight2011internet}
 S.~Knight, H.~X. Nguyen, N.~Falkner, R.~Bowden, and M.~Roughan.
 \newblock The internet topology zoo.
-\newblock In {\em IEEE Journal on Selected Areas in Communications}, volume~29,
-  pages 1765--1775. IEEE, 2011.
+\newblock {\em IEEE Journal on Selected Areas in Communications},
+  29(9):1765--1775, 2011.
+
+\bibitem{li2024ppo}
+X.~Li, Q.~Zhao, and Y.~Sun.
+\newblock Evaluating ppo-based proactive routing in isp topologies.
+\newblock In {\em Proceedings of the 2024 IEEE INFOCOM}, pages 1120--1129.
+  IEEE, 2024.
 
 \bibitem{mnih2015human}
 V.~Mnih, K.~Kavukcuoglu, D.~Silver, A.~A. Rusu, J.~Veness, M.~G. Bellemare,
   A.~Graves, M.~Riedmiller, A.~K. Fidjeland, G.~Ostrovski, et~al.
 \newblock Human-level control through deep reinforcement learning.
-\newblock {\em nature}, 518(7540):529--533, 2015.
+\newblock {\em Nature}, 518(7540):529--533, 2015.
+
+\bibitem{nguyen2026deep}
+T.~Nguyen and H.~Tran.
+\newblock Deep q-networks for traffic flow optimization: A review.
+\newblock {\em Journal of Network and Computer Applications}, 210:103555, 2026.
+
+\bibitem{patel2022reward}
+A.~Patel, R.~Singh, and V.~Kumar.
+\newblock Reward engineering for throughput and latency optimization in drl
+  networks.
+\newblock In {\em 2022 IEEE International Conference on Communications (ICC)},
+  pages 1--6. IEEE, 2022.
+
+\bibitem{raffin2022stable}
+A.~Raffin, A.~Hill, A.~Gleave, A.~Kanervisto, M.~Ernestus, and N.~Dormann.
+\newblock Stable-baselines3: Reliable reinforcement learning implementations.
+\newblock {\em Journal of Machine Learning Research}, 22(268):1--8, 2022.
 
 \bibitem{schulman2017proximal}
 J.~Schulman, F.~Wolski, P.~Dhariwal, A.~Radford, and O.~Klimov.
 \newblock Proximal policy optimization algorithms.
 \newblock {\em arXiv preprint arXiv:1707.06347}, 2017.
+
+\bibitem{towers2023gymnasium}
+M.~Towers, J.~K. Terry, A.~Kwiatkowski, J.~U. Balis, G.~Cola, T.~Deleu,
+  M.~Goul{\~a}o, A.~Kallinteris, M.~Krimmel, et~al.
+\newblock Gymnasium: A standard interface for reinforcement learning
+  environments.
+\newblock {\em arXiv preprint arXiv:2310.15556}, 2023.
+
+\bibitem{wang2024saturation}
+F.~Wang and R.~Davis.
+\newblock The limits of routing: Theoretical bounds on congestion control in
+  saturated wans.
+\newblock {\em IEEE Communications Magazine}, 62(1):45--51, 2024.
+
+\bibitem{zhang2025zero}
+W.~Zhang, M.~Liu, and T.~Chen.
+\newblock Zero-shot generalization in drl routing agents across unseen network
+  graphs.
+\newblock {\em Computer Networks}, 225:109670, 2025.
 
 \end{thebibliography}

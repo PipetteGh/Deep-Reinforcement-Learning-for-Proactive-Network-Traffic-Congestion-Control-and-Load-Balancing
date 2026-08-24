@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.16)  24 AUG 2026 20:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.16)  24 AUG 2026 20:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -336,43 +336,43 @@ File: results/plots/burst_performance_bar.png Graphic file (type png)
 Package pdftex.def Info: results/plots/burst_performance_bar.png  used on input
  line 114.
 (pdftex.def)             Requested size: 237.13594pt x 118.56767pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 <results/plots/throughput_vs_latency.png, id=20, 722.7pt x 578.16pt>
 File: results/plots/throughput_vs_latency.png Graphic file (type png)
 <use results/plots/throughput_vs_latency.png>
 Package pdftex.def Info: results/plots/throughput_vs_latency.png  used on input
  line 125.
 (pdftex.def)             Requested size: 237.13594pt x 189.70828pt.
-<results/plots/utilization_boxplot.png, id=21, 505.89pt x 289.08pt>
+
+Underfull \vbox (badness 1142) has occurred while \output is active []
+
+ [3 <./results/plots/action_space_dist.png> <./results/plots/burst_performance_
+bar.png> <./results/plots/throughput_vs_latency.png>]
+<results/plots/utilization_boxplot.png, id=28, 505.89pt x 289.08pt>
 File: results/plots/utilization_boxplot.png Graphic file (type png)
 <use results/plots/utilization_boxplot.png>
 Package pdftex.def Info: results/plots/utilization_boxplot.png  used on input l
 ine 136.
 (pdftex.def)             Requested size: 237.13594pt x 135.5059pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3 <./results/plots/action_space_dist.png> <./results/plots/burst_performance_
-bar.png> <./results/plots/throughput_vs_latency.png>]
 <results/plots/congestion_violin.png, id=29, 722.7pt x 433.62pt>
 File: results/plots/congestion_violin.png Graphic file (type png)
 <use results/plots/congestion_violin.png>
 Package pdftex.def Info: results/plots/congestion_violin.png  used on input lin
 e 143.
 (pdftex.def)             Requested size: 237.13594pt x 142.2812pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 <results/plots/robustness_lineplot.png, id=30, 542.025pt x 289.08pt>
 File: results/plots/robustness_lineplot.png Graphic file (type png)
 <use results/plots/robustness_lineplot.png>
 Package pdftex.def Info: results/plots/robustness_lineplot.png  used on input l
-ine 174.
+ine 175.
 (pdftex.def)             Requested size: 237.13594pt x 126.47218pt.
 <results/plots/reward_heatmap.png, id=31, 469.755pt x 289.08pt>
 File: results/plots/reward_heatmap.png Graphic file (type png)
 <use results/plots/reward_heatmap.png>
 Package pdftex.def Info: results/plots/reward_heatmap.png  used on input line 1
-81.
+82.
 (pdftex.def)             Requested size: 237.13594pt x 145.9291pt.
  [4 <./results/plots/utilization_boxplot.png> <./results/plots/congestion_violi
 n.png> <./results/plots/robustness_lineplot.png> <./results/plots/reward_heatma
@@ -380,42 +380,57 @@ p.png>]
 <results/plots/loss_curve.png, id=39, 611.6451pt x 338.9463pt>
 File: results/plots/loss_curve.png Graphic file (type png)
 <use results/plots/loss_curve.png>
-Package pdftex.def Info: results/plots/loss_curve.png  used on input line 193.
+Package pdftex.def Info: results/plots/loss_curve.png  used on input line 194.
 (pdftex.def)             Requested size: 237.13594pt x 131.40756pt.
 <results/plots/episode_length.png, id=40, 615.0177pt x 338.9463pt>
 File: results/plots/episode_length.png Graphic file (type png)
 <use results/plots/episode_length.png>
 Package pdftex.def Info: results/plots/episode_length.png  used on input line 2
-00.
+01.
 (pdftex.def)             Requested size: 237.13594pt x 130.68867pt.
 
-Underfull \hbox (badness 1546) in paragraph at lines 201--201
+Underfull \hbox (badness 1546) in paragraph at lines 202--202
 []\OT1/ptm/m/n/9 Figure 10. Episode Length Dis-tri-bu-tion be-fore Packet Drop
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 206--207
+\OT1/ptm/m/n/10 step re-ward re-vealed that PPO achieved $\OMS/cmsy/m/n/10 ^^@\
+OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0333$ \OT1/ptm/m/n/10 per
+ []
+
+
+Underfull \hbox (badness 1888) in paragraph at lines 206--207
+\OT1/ptm/m/n/10 step ($\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 49\OML/cmm/m/it/10 :
+\OT1/cmr/m/n/10 48\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 1380$\OT1/ptm/m/n/10 ) and 
+ECMP at $\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10
+ 0515$ \OT1/ptm/m/n/10 per step
  []
 
 <results/plots/entropy_decay.png, id=41, 499.6266pt x 338.9463pt>
 File: results/plots/entropy_decay.png Graphic file (type png)
 <use results/plots/entropy_decay.png>
-Package pdftex.def Info: results/plots/entropy_decay.png  used on input line 20
-9.
+Package pdftex.def Info: results/plots/entropy_decay.png  used on input line 21
+2.
 (pdftex.def)             Requested size: 237.13594pt x 160.87187pt.
-(final_report.bbl [5 <./results/plots/loss_curve.png> <./results/plots/episode_
-length.png> <./results/plots/entropy_decay.png>]) [6
-
-] (final_report.aux)
+[5 <./results/plots/loss_curve.png> <./results/plots/episode_length.png> <./res
+ults/plots/entropy_decay.png>] (final_report.bbl) [6] (final_report.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3661 strings out of 467501
- 61955 string characters out of 5405598
+ 3663 strings out of 467501
+ 61974 string characters out of 5405598
  558277 words of memory out of 5000000
- 32839 multiletter control sequences out of 15000+600000
- 649614 words of font info for 84 fonts, out of 8000000 for 9000
+ 32840 multiletter control sequences out of 15000+600000
+ 651197 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,8n,79p,1353b,384s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,8n,79p,1393b,384s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmmi10.pfb><C:/Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmmi7.pfb><C:/Users/CMS AI Labs/AppData/Local/Programs/MiK
@@ -426,7 +441,7 @@ MS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/U
 sers/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb
 ><C:/Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on final_report.pdf (6 pages, 1407672 bytes).
+Output written on final_report.pdf (6 pages, 1409116 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

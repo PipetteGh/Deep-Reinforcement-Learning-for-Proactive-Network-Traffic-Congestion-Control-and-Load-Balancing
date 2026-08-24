@@ -86,7 +86,7 @@ def create_presentation():
     tf = txBox.text_frame
     tf.text = "Per-Step vs Cumulative Reward:"
     p = tf.add_paragraph()
-    p.text = "- Cumulative Reward: DQN (-49.48) beat ECMP (-54.12), while PPO scored -58.52.\n- Survival Length: PPO survived 1760 steps vs DQN's 1380 and ECMP's 1050 steps.\n- True Per-Step Reward:\n  * PPO: -0.0333 / step (Most efficient)\n  * DQN: -0.0359 / step\n  * ECMP: -0.0515 / step (Worst)\n- Cumulative totals penalize PPO for surviving longer in lossy environments."
+    p.text = "- Cumulative Reward: DQN (-49.48) beat ECMP (-54.12), while PPO scored -58.52.\n- Survival Length: PPO survived 1760 steps vs DQN's 1380 and ECMP's 1050 steps.\n- True Per-Step Reward:\n  * PPO: -0.0333 / step (Highest efficiency)\n  * DQN: -0.0359 / step\n  * ECMP: -0.0515 / step (Worst)\n- Note: Cumulative and per-step metrics are mechanically coupled through episode duration under fixed drop-threshold termination."
     try:
         slide.shapes.add_picture('results/plots/burst_performance_bar.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
     except Exception as e:
@@ -114,12 +114,12 @@ def create_presentation():
     tf = txBox.text_frame
     tf.text = "Held-Out Test Set (Zero Overlap):"
     p = tf.add_paragraph()
-    p.text = "- Trained on 20 topologies (AsnetAm, Bellsouth, Nextgen, Roedunet, etc.).\n- Tested on 5 held-out topologies: Abilene, Janetbackbone, Bellcanada, Colt, Renater2001.\n- DQN consistently achieved highest reward across all 5 unseen topologies under moderate traffic.\n- Single-palette heatmap illustrates consistent performance gradients."
+    p.text = "- Evaluated on Abilene (11 nodes), Janetbackbone (29 nodes), Renater2001 (24 nodes), Bellcanada (48 nodes), and Colt (153 nodes).\n- DQN achieved uniform improvement (+6.85 reward units) across all scales.\n- Uniformity enabled by 250-D state vector zero-padding.\n- Single-palette heatmap illustrates consistent performance gradients."
     try:
         slide.shapes.add_picture('results/plots/reward_heatmap.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
     except Exception as e:
         pass
-    slide.notes_slide.notes_text_frame.text = "Point to the reward matrix. Our zero-shot evaluation on 5 completely unseen topologies validates that the learned routing policies transfer successfully across unfamiliar graph structures."
+    slide.notes_slide.notes_text_frame.text = "Point to the reward matrix. Our zero-shot evaluation on 5 completely unseen topologies validates that the learned routing policies transfer successfully across unfamiliar graph structures spanning 11 to 153 nodes."
 
     # --- Slide 10: Conclusion & Recommendations ---
     slide = prs.slides.add_slide(prs.slide_layouts[1])
@@ -129,7 +129,7 @@ def create_presentation():
         "- Per-step analysis revealed PPO's superior efficiency (-0.0333/step) and prolonged survival (1760 steps).\n"
         "- Zero-shot topological generalization is viable via standardized telemetry zero-padding.\n"
         "- DRL routing cannot solve physical saturation without active admission control.\n"
-        "- Recommendation: Couple DRL routing with dynamic rate limiting and admission control."
+        "- Recommendation: Combine fixed-horizon benchmarking with dynamic admission control."
     )
     slide.notes_slide.notes_text_frame.text = "Conclude the presentation by summarizing core takeaways: DRL excels under moderate and burst conditions, per-step metrics resolve cumulative truncation artifacts, and admission control is essential for saturation. Thank the committee and invite questions."
 

@@ -1,5 +1,10 @@
-from docx import Document
+import docx
 
-doc = Document("Paper_Review_Plain_Language.docx")
-for para in doc.paragraphs:
-    print(para.text)
+def read_docx(file_path):
+    doc = docx.Document(file_path)
+    full_text = []
+    for para in doc.paragraphs:
+        full_text.append(para.text)
+    return '\n'.join(full_text)
+
+print(read_docx('Paper_Review_v2_Plain_Language.docx'))

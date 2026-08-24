@@ -29,7 +29,7 @@ Our approach bridged the gap between software-defined networking (SDN) concepts 
 ### 2.1 Dataset and Environment
 - **Data Source:** We utilized real-world network topologies from the Internet Topology Zoo. The raw GraphML files were sanitized and precomputed to extract the $K$-shortest paths between all node pairs.
 - **Gymnasium Environment:** We developed a custom Markov Decision Process (MDP) sandbox (`NetworkCongestionEnv`) that simulated network queues, link capacities and traffic flows. 
-- **State Space:** The agents observed a 250-dimensional state vector encompassing current link utilizations (100 features), queue occupancies (100 features) and instantaneous flow demands (50 features). **PCA Feature Importance analysis** revealed that agents heavily prioritized Queue Occupancy and Link Utilization over raw Flow Demands.
+- **State Space:** The agents observed a 250-dimensional state vector encompassing current link utilizations (100 features), queue occupancies (100 features) and instantaneous flow demands (50 features). **PCA Analysis** revealed that Queue Occupancy and Link Utilization exhibited significantly more variance in the data distribution than raw Flow Demands.
 - **Action Space:** The agent outputted load-balancing weights to distribute active flows across the precomputed $K$-shortest paths. Our analysis illustrated a stark architectural dichotomy: PPO explored a highly continuous spectrum of routing weights whereas DQN was rigidly bound to 10 distinct fractional bins.
 - **Reward Function:** A composite, weighted reward function heavily penalized queue overflow (congestion) while rewarding high overall link utilization (throughput).
 
@@ -44,14 +44,14 @@ Models were trained across 5 independent random seeds (`42, 100, 2024, 777, 1337
 
 Our rigorous experimental suite demonstrated that DRL agents significantly outperformed traditional static heuristics under volatile conditions but faced fundamental physical limits under saturation.
 
-### 3.1 Superior Burst Handling
-During highly variable traffic bursts, static ECMP was incapable of rerouting traffic around sudden bottlenecks. PPO and DQN substantially outperformed the ECMP baseline, achieving significantly lower congestion penalties and higher overall throughput. The agents learned to proactively divert traffic to sub-optimal but empty paths to prevent localized packet drops.
+### 3.1 Superior Performance under Moderate Traffic
+During moderate traffic scenarios, both DRL agents consistently outperformed traditional static heuristics, providing a measurable and consistent advantage. This represented the optimal operating window for these AI-driven routing controllers.
 
-### 3.2 The Saturation Limit (Honest Negative Result)
-Under sustained, heavy congestion, the network became fundamentally saturated. We demonstrated that no routing policy could prevent dropped packets when total demand heavily exceeded global capacity. In this scenario, DRL agents performed worse than ECMP because their constant exploration and path shifting induced unnecessary packet reordering overhead.
+### 3.2 Burst Handling and Limitations
+During highly variable traffic bursts, static ECMP was incapable of rerouting traffic around sudden bottlenecks. The DQN agent substantially outperformed the ECMP baseline, achieving significantly lower congestion penalties and higher overall throughput. However, the PPO agent struggled with the extreme volatility of burst traffic and scored worse than ECMP.
 
-### 3.3 Zero-Shot Generalization Scaling
-We rigorously proved the zero-shot generalization capabilities of the agents on 5 unseen Topologies. As the number of nodes in the unseen test topologies increased up to 100 nodes, overall reward naturally decreased due to graph complexity, but PPO consistently maintained a superior performance trajectory compared to DQN.
+### 3.3 The Saturation Limit (Honest Negative Result)
+Under sustained, heavy congestion, the network became fundamentally saturated. DRL performed worse than ECMP under saturation. The fact that DQN and PPO scored almost identically suggests the cause is not the action space. We suspect that continued path-shifting under saturation is counterproductive, but our environment does not model reordering costs, so we cannot confirm this.
 
 ### 3.4 Generalization Performance Data
 
@@ -67,7 +67,7 @@ The table below outlines the exact measurements extracted from our simulations. 
 | PPO   | burst        | 83.32%          | 0.223              | -58.52         |
 | ECMP  | congestion   | 99.84%          | 0.243              | -73.78         |
 | DQN   | congestion   | 99.59%          | 0.394              | -80.41         |
-| PPO   | congestion   | 99.49%          | 0.408              | -80.42         |
+| PPO   | congestion   | 99.49%          | 0.408              | -80.43         |
 
 *(Metrics extracted directly from `results/generalization.csv` across 10 evaluation episodes per condition).*
 
@@ -82,7 +82,7 @@ The table below outlines the exact measurements extracted from our simulations. 
 - `src/environment/`: The core Gymnasium-compatible Markov Decision Process sandbox.
 - `src/traffic/`: Procedural traffic generation module (normal, moderate, burst, congestion).
 - `src/evaluation/`: Scripts to run zero-shot generalization testing and plot the raw data.
-- `generate_advanced_visuals.py`: Script to generate PCA, Entropy Decay, Action Space and Scaling plots.
+- `generate_advanced_visuals.py`: Script to generate PCA, Entropy Decay, and Action Space plots.
 - `create_presentation.py`: Generates the final 10-slide PowerPoint presentation.
 
 ## 5. Installation and Execution

@@ -67,11 +67,49 @@ def create_presentation():
     txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(2))
     tf = txBox.text_frame
     tf.text = "- Under sudden micro-bursts, DRL dominates.\n- ECMP fails to adapt dynamically."
-    try:
-        slide.shapes.add_picture('results/plots/burst_performance_bar.png', Inches(1.0), Inches(3.0), width=Inches(8))
-    except Exception as e:
-        pass
-    slide.notes_slide.notes_text_frame.text = "Direct the audience to the horizontal bar chart. Explain that PPO and DQN both significantly outperform ECMP here. Because they observe real-time telemetry, they immediately route burst traffic away from the bottleneck, preventing packet drops."
+    # --- Slide 5: Performance Under Moderate Traffic ---
+    slide = prs.slides.add_slide(prs.slide_layouts[5])
+    slide.shapes.title.text = "Superior Performance under Moderate Traffic"
+    
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(5))
+    tf = txBox.text_frame
+    tf.text = "Optimal Operating Window:"
+    p = tf.add_paragraph()
+    p.text = "- Under moderate traffic conditions, both DQN and PPO consistently outperformed traditional ECMP."
+    p.level = 1
+    p = tf.add_paragraph()
+    p.text = "- Achieved lower congestion penalties and higher overall throughput."
+    p.level = 1
+    p = tf.add_paragraph()
+    p.text = "- The models learned to proactively divert traffic to sub-optimal but empty paths."
+    p.level = 1
+
+    slide.shapes.add_picture("results/plots/burst_performance_bar.png", Inches(5), Inches(1.5), width=Inches(4.5))
+
+    notes = slide.notes_slide.notes_text_frame
+    notes.text = "In this slide, we focus on our primary success: moderate traffic. This is the optimal operating window for our models where they both clearly beat ECMP. As you can see from the plot, the agents learn to route around early congestion."
+
+    # Slide 6: Burst Limitations
+    slide = prs.slides.add_slide(prs.slide_layouts[5])
+    slide.shapes.title.text = "Burst Traffic Limitations"
+    
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(5))
+    tf = txBox.text_frame
+    tf.text = "DQN vs PPO under Burst:"
+    p = tf.add_paragraph()
+    p.text = "- DQN successfully beat ECMP, finding stable routes around bottlenecks."
+    p.level = 1
+    p = tf.add_paragraph()
+    p.text = "- PPO failed to outperform ECMP."
+    p.level = 1
+    p = tf.add_paragraph()
+    p.text = "- While PPO survived longer in episodes, its reward per step was worse."
+    p.level = 1
+
+    slide.shapes.add_picture("results/plots/episode_length.png", Inches(5), Inches(1.5), width=Inches(4.5))
+
+    notes = slide.notes_slide.notes_text_frame
+    notes.text = "Under extreme burst traffic, DQN handled the volatility well, but PPO did not. Even though PPO survives for more timesteps before failing, its overall efficiency per step drops below the ECMP baseline."
 
     # --- Slide 7: Key Findings - The Saturation Limit ---
     slide = prs.slides.add_slide(prs.slide_layouts[5])

@@ -1,17 +1,14 @@
-\begin{thebibliography}{10}\itemsep=-1pt
+\begin{thebibliography}{1}\itemsep=-1pt
 
-\bibitem{alavizadeh2022deep}
-H.~Alavizadeh et~al.
-\newblock Deep q-learning based reinforcement learning approach for network
-  intrusion detection.
-\newblock {\em Computers}, 11(3):41, 2022.
+\bibitem{hopps2000analysis}
+C.~E. Hopps.
+\newblock Analysis of an equal-cost multi-path algorithm.
+\newblock Technical report, RFC 2992, 2000.
 
-\bibitem{chen2022drl}
-Y.~Chen, L.~Wang, H.~Zhang, and J.~Liu.
-\newblock Deep reinforcement learning for dynamic traffic engineering in
-  software-defined networks.
-\newblock {\em IEEE Transactions on Network and Service Management},
-  19(2):1024--1037, 2022.
+\bibitem{kirk2023survey}
+R.~Kirk, A.~Zhang, E.~Grefenstette, and T.~Rockt{\"a}schel.
+\newblock A survey of zero-shot generalisation in deep reinforcement learning.
+\newblock {\em Journal of Artificial Intelligence Research}, 76:201--264, 2023.
 
 \bibitem{knight2011internet}
 S.~Knight, H.~X. Nguyen, N.~Falkner, R.~Bowden, and M.~Roughan.
@@ -19,44 +16,39 @@ S.~Knight, H.~X. Nguyen, N.~Falkner, R.~Bowden, and M.~Roughan.
 \newblock {\em IEEE Journal on Selected Areas in Communications},
   29(9):1765--1775, 2011.
 
-\bibitem{matsuo2022deep}
-Y.~Matsuo et~al.
-\newblock Deep learning, reinforcement learning, and world models.
-\newblock {\em Neural Networks}, 152:267--275, 2022.
-
 \bibitem{mnih2015human}
 V.~Mnih, K.~Kavukcuoglu, D.~Silver, A.~A. Rusu, J.~Veness, M.~G. Bellemare,
   A.~Graves, M.~Riedmiller, A.~K. Fidjeland, G.~Ostrovski, et~al.
 \newblock Human-level control through deep reinforcement learning.
 \newblock {\em Nature}, 518(7540):529--533, 2015.
 
-\bibitem{noaeen2022reinforcement}
-M.~Noaeen et~al.
-\newblock Reinforcement learning in urban network traffic signal control: A
-  systematic literature review.
-\newblock {\em Expert Systems with Applications}, 199:116830, 2022.
-
 \bibitem{pei2024enabling}
 X.~Pei et~al.
 \newblock Enabling efficient routing for traffic engineering in sdn with deep
   reinforcement learning.
-\newblock {\em Computer Networks}, 240:110173, 2024.
+\newblock {\em Computer Networks}, 240:110220, 2024.
 
-\bibitem{raffin2022stable}
+\bibitem{raffin2021stable}
 A.~Raffin, A.~Hill, A.~Gleave, A.~Kanervisto, M.~Ernestus, and N.~Dormann.
-\newblock Stable-baselines3: Reliable reinforcement learning implementations.
-\newblock {\em Journal of Machine Learning Research}, 22(268):1--8, 2022.
+\newblock Stable-baselines3: Reliable reinforcement learning implementations in
+  python.
+\newblock {\em Journal of Machine Learning Research}, 22(268):1--8, 2021.
 
 \bibitem{schulman2017proximal}
 J.~Schulman, F.~Wolski, P.~Dhariwal, A.~Radford, and O.~Klimov.
 \newblock Proximal policy optimization algorithms.
 \newblock {\em arXiv preprint arXiv:1707.06347}, 2017.
 
-\bibitem{towers2023gymnasium}
-M.~Towers, J.~K. Terry, A.~Kwiatkowski, J.~U. Balis, G.~Cola, T.~Deleu,
+\bibitem{towers2024gymnasium}
+M.~Towers, J.~Jordan, A.~Kwiatkowski, J.~U. Balis, G.~Cola, T.~Deleu,
   M.~Goul{\~a}o, A.~Kallinteris, M.~Krimmel, et~al.
 \newblock Gymnasium: A standard interface for reinforcement learning
   environments.
-\newblock {\em arXiv preprint arXiv:2310.15556}, 2023.
+\newblock {\em arXiv preprint arXiv:2407.17032}, 2024.
+
+\bibitem{watkins1992q}
+C.~J. Watkins and P.~Dayan.
+\newblock Q-learning.
+\newblock {\em Machine Learning}, 8(3-4):279--292, 1992.
 
 \end{thebibliography}

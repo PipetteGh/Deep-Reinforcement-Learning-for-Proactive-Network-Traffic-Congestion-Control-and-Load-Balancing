@@ -11,155 +11,130 @@ def create_presentation():
     slide = prs.slides.add_slide(prs.slide_layouts[0])
     slide.shapes.title.text = "Deep Reinforcement Learning for Proactive Network Traffic Congestion Control"
     slide.placeholders[1].text = "Authors: Peter Borngreat-Mensah, Henry Asante, Blessing Listowell Issaka\nMSc Computer Science, Cohort B, University of Ghana"
-    slide.notes_slide.notes_text_frame.text = "Welcome the audience. Introduce yourselves and state that this research tackles one of the most pressing issues in modern ISP networks: transient traffic micro-bursts and the limitations of static routing."
+    slide.notes_slide.notes_text_frame.text = "Welcome the audience and supervisor. Introduce the topic: evaluating Deep Reinforcement Learning for proactive network load balancing and congestion avoidance across wide-area ISP networks."
     
     # --- Slide 2: Problem Statement ---
     slide = prs.slides.add_slide(prs.slide_layouts[1])
     slide.shapes.title.text = "The Problem: Static Routing & Micro-Bursts"
     slide.placeholders[1].text = (
-        "- Wide-area networks experience heavy volatility.\n"
-        "- Equal-Cost Multi-Path (ECMP) relies on static hashing.\n"
-        "- ECMP is blind to real-time telemetry.\n"
-        "- 'Elephant flows' collide on bottleneck links."
+        "- Wide-area networks experience heavy volatility and sudden micro-bursts.\n"
+        "- Equal-Cost Multi-Path (ECMP) relies on static packet header hashing.\n"
+        "- ECMP is stateless and blind to real-time link queue telemetry.\n"
+        "- Hash collisions map heavy 'elephant flows' onto the same bottleneck links."
     )
-    slide.notes_slide.notes_text_frame.text = "Explain that traditional ECMP doesn't look at how full a link is; it just blindly hashes packets. When a massive data flow (elephant flow) hits, ECMP can accidentally send it down an already congested path, causing dropped packets."
+    slide.notes_slide.notes_text_frame.text = "Explain that traditional ECMP doesn't look at how full a link is; it just hashes packet headers. When massive elephant flows collide, it causes severe bottlenecks and buffer overflows."
 
     # --- Slide 3: Research Objectives ---
     slide = prs.slides.add_slide(prs.slide_layouts[1])
     slide.shapes.title.text = "Research Objectives"
     slide.placeholders[1].text = (
-        "1. Evaluate Deep Reinforcement Learning (DQN, PPO).\n"
-        "2. Implement intelligent agents within an SDN framework.\n"
-        "3. Critically test Zero-Shot Generalization on unseen topologies.\n"
-        "4. Discover limitations under heavy network saturation."
+        "1. Evaluate Deep Reinforcement Learning (DQN and PPO) for proactive load balancing.\n"
+        "2. Implement intelligent agents within a Software-Defined Network (SDN) framework.\n"
+        "3. Evaluate Zero-Shot Generalization on 5 completely unseen ISP topologies.\n"
+        "4. Uncover physical operating limits under sustained network saturation."
     )
-    slide.notes_slide.notes_text_frame.text = "Our goal wasn't just to see if AI works, but to push it to its breaking point. We specifically wanted to see if an agent trained on one network could magically route traffic on a completely different, unseen network (zero-shot generalization)."
+    slide.notes_slide.notes_text_frame.text = "State our core goals: comparing value-based DQN vs policy-gradient PPO against ECMP, testing true zero-shot transferability across topologies, and identifying the physical boundaries of DRL routing."
 
     # --- Slide 4: Methodology - State Space & Features ---
-    slide = prs.slides.add_slide(prs.slide_layouts[5]) # Title only
-    slide.shapes.title.text = "Methodology: State Space & PCA Features"
-    # Add text
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(4))
+    slide = prs.slides.add_slide(prs.slide_layouts[5])
+    slide.shapes.title.text = "Methodology: State Space & PCA Variance"
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(4.5))
     tf = txBox.text_frame
-    tf.text = "- 250-dimensional continuous vector.\n- Top 100 links (utilization).\n- Top 100 queues.\n- 50 Flow Demands.\n- Topologies < 100 links are zero-padded."
-    # Add Image
+    tf.text = "MDP State Representation:"
+    p = tf.add_paragraph()
+    p.text = "- 250-dimensional continuous telemetry vector.\n- Top 100 links (utilization ratio).\n- Top 100 queues (buffer occupancy).\n- 50 Flow Demands.\n- Deterministic zero-padding for topologies with < 100 links."
+    p = tf.add_paragraph()
+    p.text = "- PCA confirmed highest variance in Queue and Link states, motivating feature normalization."
     try:
-        slide.shapes.add_picture('results/plots/feature_importance.png', Inches(4.5), Inches(2.0), width=Inches(5))
+        slide.shapes.add_picture('results/plots/feature_importance.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
     except Exception as e:
         print(f"Skipped image: {e}")
-    slide.notes_slide.notes_text_frame.text = "Point to the graph. Explain that the neural network learns to prioritize Queue Occupancy and Link Utilization over raw flow demands. The zero-padding allows the same 250-feature neural network to accept any topology size."
+    slide.notes_slide.notes_text_frame.text = "Explain that the 250-feature state vector captures real-time link and buffer utilization. Zero-padding allows the policy network to ingest any topology shape without retraining."
 
-    # --- Slide 5: Methodology - Action Space ---
+    # --- Slide 5: Methodology - Action Space Dichotomy ---
     slide = prs.slides.add_slide(prs.slide_layouts[5])
     slide.shapes.title.text = "Methodology: Continuous vs Discrete Actions"
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(4))
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(4.5))
     tf = txBox.text_frame
-    tf.text = "- PPO: Continuous probability spectrum.\n- DQN: Rigid 10-bin discrete choices.\n- Reward penalizes congestion and drops."
+    tf.text = "Action Space Architecture:"
+    p = tf.add_paragraph()
+    p.text = "- PPO: Explores a fully continuous probability distribution over routing paths.\n- DQN: Bound to 10 discrete routing bins.\n- Reward Function: Penalizes queue congestion and packet drops while rewarding balanced utilization."
     try:
-        slide.shapes.add_picture('results/plots/action_space_dist.png', Inches(4.5), Inches(2.0), width=Inches(5))
+        slide.shapes.add_picture('results/plots/action_space_dist.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
     except Exception as e:
         pass
-    slide.notes_slide.notes_text_frame.text = "Show how DQN's actions (in red) are locked into 10 rigid bars, whereas PPO (in blue) can output any fine-tuned routing weight, allowing for much smoother traffic engineering."
+    slide.notes_slide.notes_text_frame.text = "Highlight the design dichotomy: PPO outputs fine-grained continuous routing probabilities across K-shortest paths, whereas DQN chooses from 10 discrete fractions."
 
-    # --- Slide 6: Key Findings - Burst Traffic Superiority ---
+    # --- Slide 6: Moderate Traffic Performance ---
     slide = prs.slides.add_slide(prs.slide_layouts[5])
-    slide.shapes.title.text = "Key Findings: Burst Traffic"
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(2))
-    tf = txBox.text_frame
-    tf.text = "- Under sudden micro-bursts, DRL dominates.\n- ECMP fails to adapt dynamically."
-    # --- Slide 5: Performance Under Moderate Traffic ---
-    slide = prs.slides.add_slide(prs.slide_layouts[5])
-    slide.shapes.title.text = "Superior Performance under Moderate Traffic"
-    
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(5))
+    slide.shapes.title.text = "Primary Success: Moderate Traffic Regime"
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(4.5))
     tf = txBox.text_frame
     tf.text = "Optimal Operating Window:"
     p = tf.add_paragraph()
-    p.text = "- Under moderate traffic conditions, both DQN and PPO consistently outperformed traditional ECMP."
-    p.level = 1
-    p = tf.add_paragraph()
-    p.text = "- Achieved lower congestion penalties and higher overall throughput."
-    p.level = 1
-    p = tf.add_paragraph()
-    p.text = "- The models learned to proactively divert traffic to sub-optimal but empty paths."
-    p.level = 1
+    p.text = "- Moderate traffic is where BOTH DRL agents cleanly outperform ECMP.\n- DQN achieved -60.84 and PPO achieved -64.65 vs ECMP's -67.70 (both p < 0.001).\n- DQN maintained lower median link utilization (0.88 vs 0.92) by proactively leveraging secondary paths."
+    try:
+        slide.shapes.add_picture('results/plots/utilization_boxplot.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
+    except Exception as e:
+        pass
+    slide.notes_slide.notes_text_frame.text = "Point to the boxplot. Moderate traffic represents the sweet spot for DRL. DQN and PPO both achieve statistically significant improvements over ECMP by balancing loads across empty backup paths."
 
-    slide.shapes.add_picture("results/plots/burst_performance_bar.png", Inches(5), Inches(1.5), width=Inches(4.5))
-
-    notes = slide.notes_slide.notes_text_frame
-    notes.text = "In this slide, we focus on our primary success: moderate traffic. This is the optimal operating window for our models where they both clearly beat ECMP. As you can see from the plot, the agents learn to route around early congestion."
-
-    # Slide 6: Burst Limitations
+    # --- Slide 7: Burst Traffic & Per-Step Efficiency ---
     slide = prs.slides.add_slide(prs.slide_layouts[5])
-    slide.shapes.title.text = "Burst Traffic Limitations"
-    
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(5))
+    slide.shapes.title.text = "Burst Traffic & Per-Step Efficiency"
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(4.5))
     tf = txBox.text_frame
-    tf.text = "DQN vs PPO under Burst:"
+    tf.text = "Episode vs Per-Step Dynamics:"
     p = tf.add_paragraph()
-    p.text = "- DQN successfully beat ECMP, finding stable routes around bottlenecks."
-    p.level = 1
-    p = tf.add_paragraph()
-    p.text = "- PPO failed to outperform ECMP."
-    p.level = 1
-    p = tf.add_paragraph()
-    p.text = "- While PPO survived longer in episodes, its reward per step was worse."
-    p.level = 1
+    p.text = "- Total Reward: DQN (-49.48) beat ECMP (-54.12), while PPO scored -58.52.\n- Survival Time: PPO survived ~1800 steps before packet drops vs DQN's ~1400 steps.\n- Per-Step Efficiency: PPO achieved -0.0325/step vs DQN's -0.0353/step.\n- Cumulative scoring penalizes PPO simply for surviving longer in lossy settings."
+    try:
+        slide.shapes.add_picture('results/plots/burst_performance_bar.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
+    except Exception as e:
+        pass
+    slide.notes_slide.notes_text_frame.text = "Explain the crucial insight from our review: PPO survived ~1800 steps vs DQN's ~1400, achieving higher per-step reward (-0.0325 vs -0.0353). Cumulative episodic totals penalize it simply because it lasted longer in a hostile environment."
 
-    slide.shapes.add_picture("results/plots/episode_length.png", Inches(5), Inches(1.5), width=Inches(4.5))
-
-    notes = slide.notes_slide.notes_text_frame
-    notes.text = "Under extreme burst traffic, DQN handled the volatility well, but PPO did not. Even though PPO survives for more timesteps before failing, its overall efficiency per step drops below the ECMP baseline."
-
-    # --- Slide 7: Key Findings - The Saturation Limit ---
+    # --- Slide 8: The Saturation Limit (Honest Negative Result) ---
     slide = prs.slides.add_slide(prs.slide_layouts[5])
     slide.shapes.title.text = "The Saturation Limit (Honest Negative Result)"
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(4))
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(4.5))
     tf = txBox.text_frame
-    tf.text = "- Extreme congestion mathematically saturates the network.\n- No routing policy can create bandwidth.\n- DRL performs identically/worse than ECMP here."
+    tf.text = "Physical Capacity Boundaries:"
+    p = tf.add_paragraph()
+    p.text = "- Under heavy congestion, all links reach 100% capacity.\n- DRL performed worse than ECMP (-80.41 vs -73.78).\n- Continued path-shifting under saturation creates counterproductive routing churn.\n- No routing algorithm can create bandwidth when total demand exceeds topology capacity."
     try:
-        slide.shapes.add_picture('results/plots/throughput_vs_latency.png', Inches(4.5), Inches(2.0), width=Inches(5))
+        slide.shapes.add_picture('results/plots/throughput_vs_latency.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
     except Exception as e:
         pass
-    slide.notes_slide.notes_text_frame.text = "This is our most critical academic finding. Look at the square markers on the scatter plot. Under extreme congestion, DRL fails to beat ECMP. Why? Because the network is physically full. Constantly shifting traffic just causes packet reordering overhead. This proves we need admission control."
+    slide.notes_slide.notes_text_frame.text = "Discuss our honest negative result: When every link in the network is completely saturated, DRL cannot route around bottlenecks because no spare capacity exists. Path churning under saturation leads to extra penalties."
 
-    # --- Slide 8: Zero-Shot Generalization ---
+    # --- Slide 9: Robustness & Zero-Shot Transfer ---
     slide = prs.slides.add_slide(prs.slide_layouts[5])
-    slide.shapes.title.text = "Zero-Shot Generalization vs Network Size"
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(4))
+    slide.shapes.title.text = "Zero-Shot Generalization & Robustness"
+    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4.5), Inches(4.5))
     tf = txBox.text_frame
-    tf.text = "- Agents tested on 5 UNSEEN Topologies.\n- Performance decays naturally as nodes increase.\n- PPO maintains superior trajectory over DQN."
+    tf.text = "Generalization on 5 Unseen Topologies:"
+    p = tf.add_paragraph()
+    p.text = "- Evaluated on Abilene, Janetbackbone, Bellcanada, Colt, and Renater2001.\n- DQN consistently outperformed ECMP across all 5 held-out topologies under moderate traffic.\n- Single-palette reward matrix shows consistent performance gradients across traffic stress tests."
     try:
-        slide.shapes.add_picture('results/plots/topology_scaling.png', Inches(4.5), Inches(2.0), width=Inches(5))
+        slide.shapes.add_picture('results/plots/reward_heatmap.png', Inches(5.0), Inches(1.5), width=Inches(4.5))
     except Exception as e:
         pass
-    slide.notes_slide.notes_text_frame.text = "We threw the agents into completely unseen networks ranging up to 100 nodes. As expected, bigger networks are harder to route, so reward drops. But notice how PPO (the blue line) consistently stays above DQN (the red line), proving robust zero-shot transfer."
+    slide.notes_slide.notes_text_frame.text = "Show the reward heatmap across the traffic scenarios. Our zero-shot evaluation on 5 completely unseen topologies confirms that the learned policies successfully transfer to new network topologies."
 
-    # --- Slide 9: Statistical Variance ---
-    slide = prs.slides.add_slide(prs.slide_layouts[5])
-    slide.shapes.title.text = "Variance and Predictability"
-    txBox = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(4), Inches(4))
-    tf = txBox.text_frame
-    tf.text = "- ECMP provides narrow, predictable variance.\n- DRL trades predictability for aggressive reaction to bursts."
-    try:
-        slide.shapes.add_picture('results/plots/congestion_violin.png', Inches(4.5), Inches(2.0), width=Inches(5))
-    except Exception as e:
-        pass
-    slide.notes_slide.notes_text_frame.text = "Look at the violin plots. ECMP is tight and narrow (predictable but mediocre). The DRL agents have wider bodies and long tails—they are aggressively hunting for better paths, which creates higher variance but much better burst mitigation."
-    
     # --- Slide 10: Conclusion & Future Work ---
     slide = prs.slides.add_slide(prs.slide_layouts[1])
-    slide.shapes.title.text = "Conclusion & Future Work"
+    slide.shapes.title.text = "Conclusions & Recommendations"
     slide.placeholders[1].text = (
-        "- DRL (specifically PPO) is highly viable for proactive micro-burst load balancing.\n"
-        "- Zero-shot generalization is achievable via topological state vector zero-padding.\n"
-        "- DRL cannot solve absolute network saturation.\n"
-        "- Future Work: Coupling DRL routing with dynamic admission control."
+        "- DRL is highly effective for proactive load balancing under Moderate traffic (both DQN and PPO win) and Burst traffic (DQN wins).\n"
+        "- PPO demonstrates superior per-step efficiency and prolonged survival.\n"
+        "- Zero-shot topological generalization is viable via standardized telemetry zero-padding.\n"
+        "- DRL routing cannot solve fundamental network saturation without admission control.\n"
+        "- Recommendation: Combine DRL routing with dynamic rate limiting and admission control."
     )
-    slide.notes_slide.notes_text_frame.text = "Wrap up the presentation. Conclude that AI is amazing for transient bursts, but it cannot bend the laws of physics when a network is 100% full. Thank the audience and ask for questions."
+    slide.notes_slide.notes_text_frame.text = "Conclude the presentation. Summarize key takeaways: DRL shines under moderate and burst conditions, per-step metrics provide deeper clarity than raw episode totals, and admission control is essential for saturation. Thank the committee and invite questions."
 
     prs.save('final_presentation.pptx')
-    print("final_presentation.pptx with images and notes created successfully.")
+    print("final_presentation.pptx successfully created with 10 slides, presenter notes, and updated visuals.")
 
 if __name__ == '__main__':
     create_presentation()

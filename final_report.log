@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.16)  22 AUG 2026 01:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.16)  22 AUG 2026 02:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -290,13 +290,8 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 4
 
 (C:\Users\CMS AI Labs\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Underfull \hbox (badness 1728) in paragraph at lines 53--54
-[]\OT1/ptm/m/n/10 In this re-search, we com-pre-hen-sively eval-u-ate two
- []
-
-[1{C:/Users/CMS AI Labs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Us
-ers/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+) [1{C:/Users/CMS AI Labs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/
+Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
@@ -427,7 +422,7 @@ Here is how much of TeX's memory you used:
  32830 multiletter control sequences out of 15000+600000
  644886 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,8n,79p,1261b,384s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,8n,79p,1270b,384s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmmi10.pfb><C:/Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmmi7.pfb><C:/Users/CMS AI Labs/AppData/Local/Programs/MiK
@@ -438,7 +433,7 @@ MS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/U
 sers/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb
 ><C:/Users/CMS AI Labs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on final_report.pdf (6 pages, 1724299 bytes).
+Output written on final_report.pdf (6 pages, 1724360 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

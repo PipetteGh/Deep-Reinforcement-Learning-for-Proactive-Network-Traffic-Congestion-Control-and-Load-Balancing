@@ -1,4 +1,11 @@
-\begin{thebibliography}{1}\itemsep=-1pt
+\begin{thebibliography}{10}\itemsep=-1pt
+
+\bibitem{boyan1994packet}
+J.~A. Boyan and M.~L. Littman.
+\newblock Packet routing in dynamically changing networks: A reinforcement
+  learning approach.
+\newblock In {\em Advances in Neural Information Processing Systems}, volume~6,
+  pages 671--678, 1994.
 
 \bibitem{hopps2000analysis}
 C.~E. Hopps.
@@ -45,6 +52,12 @@ M.~Towers, J.~Jordan, A.~Kwiatkowski, J.~U. Balis, G.~Cola, T.~Deleu,
 \newblock Gymnasium: A standard interface for reinforcement learning
   environments.
 \newblock {\em arXiv preprint arXiv:2407.17032}, 2024.
+
+\bibitem{van2016deep}
+H.~van Hasselt, A.~Guez, and D.~Silver.
+\newblock Deep reinforcement learning with double q-learning.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~30, pages 2094--2100, 2016.
 
 \bibitem{watkins1992q}
 C.~J. Watkins and P.~Dayan.

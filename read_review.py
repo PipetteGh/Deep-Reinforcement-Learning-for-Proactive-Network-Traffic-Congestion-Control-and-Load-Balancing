@@ -7,4 +7,4 @@ def read_docx(file_path):
         full_text.append(para.text)
     return '\n'.join(full_text)
 
-print(read_docx('Paper_Review_v3_Plain_Language.docx'))
+print(read_docx('Paper_Review_v4_Plain_Language.docx'))

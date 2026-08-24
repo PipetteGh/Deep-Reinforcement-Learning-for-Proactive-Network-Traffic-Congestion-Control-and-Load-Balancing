@@ -1,0 +1,5 @@
+# Reward Weights Configuration
+w_throughput: 0.4
+w_latency: 0.3
+w_packet_loss: 0.2
+w_congestion: 0.1
